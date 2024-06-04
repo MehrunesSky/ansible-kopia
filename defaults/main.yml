@@ -1,2 +1,7 @@
 ---
-# defaults file for ansible-kopia
+# defaults variables for ansible-kopia
+kopia_environment_vars:
+  KOPIA_LOG_DIR_MAX_FILES: 1000
+  KOPIA_LOG_DIR_MAX_AGE: 720h
+  KOPIA_CONTENT_LOG_DIR_MAX_FILES: 5000
+  KOPIA_CONTENT_LOG_DIR_MAX_AGE: 720h
