@@ -19,3 +19,19 @@
     line: "{{ item.key | upper }}={{ item.value }}"
     create: yes
   with_dict: "{{ kopia_environment_vars }}"
+
+- name: Add /var/log/kopia directory for cron logs
+  file:
+    path: /var/log/kopia
+    state: directory
+    owner: root
+    group: root
+    mode: 0750
+
+- name: Add logrotate entry for logs
+  copy:
+    src: kopia.logrotate
+    dest: /etc/logrotate.d/kopia
+    owner: root
+    group: root
+    mode: 0644

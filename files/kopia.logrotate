@@ -1,0 +1,7 @@
+/var/log/kopia/*.log {
+    daily
+    missingok
+    rotate {{ kopia_keep_log_days }}
+    compress
+    notifempty
+}
