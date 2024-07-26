@@ -29,8 +29,8 @@
     mode: 0750
 
 - name: Add logrotate entry for logs
-  copy:
-    src: kopia.logrotate
+  template:
+    src: kopia.logrotate.j2
     dest: /etc/logrotate.d/kopia
     owner: root
     group: root
