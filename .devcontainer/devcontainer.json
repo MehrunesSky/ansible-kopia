@@ -1,0 +1,23 @@
+{
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "privileged": true,
+  "mounts": ["source=/var/run/docker.sock,target=/var/run/user/1000/docker.sock,type=bind"],
+  "runArgs": ["--add-host=host.docker.internal:host-gateway"],
+  
+  "customizations": {
+    "vscode": {
+      "terminal.integrated.shell.linux": "/bin/bash",
+      "extensions": [
+        "ms-azuretools.vscode-docker"
+      ],
+    },
+    "jetbrains": {
+      "settings": {
+        "Docker:app:DockerSettings.dockerComposePath": "/usr/local/bin/docker",
+        "Docker:app:DockerSettings.dockerPath": "/usr/local/bin/docker"
+      }
+    }
+  }
+}

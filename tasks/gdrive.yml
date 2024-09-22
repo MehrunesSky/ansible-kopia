@@ -1,0 +1,26 @@
+---
+- name: Handle repo connection
+  block:
+    - name: Check if repo gdrive is connected
+      command: "kopia repository status"
+      changed_when: false
+  rescue:
+    - name: Connect repository
+      block:
+        - name: Copy credentials to host system
+          copy:
+            src: "{{ kopia_gdrive_credential_file }}"
+            dest: /tmp/credential.json
+            mode: '0600'
+        - name: Connect to repository
+          command: "kopia repository connect gdrive --folder-id {{ kopia_gdrive_folder_id }} --credentials-file /tmp/credential.json -p {{ kopia_gcs_password }}"
+      rescue:
+        - name: Create repository
+          command: "kopia repository create gdrive --folder-id {{ kopia_gdrive_folder_id }} --credentials-file /tmp/credential.json -p {{ kopia_gcs_password }}"
+          args:
+            creates: "~/.config/kopia/repository.config"
+      always:
+        - name: Delete credentials
+          file:
+            path: /tmp/credential.json
+            state: absent

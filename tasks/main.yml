@@ -9,3 +9,10 @@
   tags:
     - kopia
     - kopia:gcs
+
+
+- import_tasks: gdrive.yml
+  when: kopia_gdrive_folder_id is defined
+  tags:
+    - kopia
+    - kopia:gdrive

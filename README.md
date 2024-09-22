@@ -2,13 +2,15 @@
 
 Ansible role for https://kopia.io/
 
-Only supports GCS.
+Only supports GCS and GDRIVE.
 
 ## Role Variables
 
 - `kopia_gcs_bucket`: GCS destination bucket for Kopia
 - `kopia_gcs_email`: email for SA
 - `kopia_gcs_password`: repos password
+- `kopia_gdrive_folder_id`: Folder id for gdrive
+- `kopia_gdrive_credential_file`: Path for credential file
 
 
 ## Example Playbook
